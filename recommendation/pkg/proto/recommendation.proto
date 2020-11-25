@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package proto;
+
+service Recommendation {
+  rpc GetRecommendations(Movie) returns (Results);
+}
+
+message Movie {
+  int32 movieID = 1;
+}
+
+message Results {
+  repeated Result results = 1 [json_name = "results"];
+}
+
+message Result {
+  float VoteAverage = 1 [json_name = "vote_average"];
+  int64 ID = 2 [json_name = "id"];
+  string ReleaseDate = 3 [json_name = "release_date"];
+  string BackdropPath = 4 [json_name = "backdrop_path"];
+  string Title = 5 [json_name = "title"];
+  string PosterPath = 6 [json_name = "poster_path"];
+  string Overview = 7 [json_name = "overview"];
+}

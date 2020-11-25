@@ -1,8 +1,8 @@
 package main
 
 import (
-	"bitbucket.lab.dynatrace.org/users/fouad.alkada/repos/k8s-knowledge-sharing-advanced/search/internal/server/grpc"
-	"bitbucket.lab.dynatrace.org/users/fouad.alkada/repos/k8s-knowledge-sharing-advanced/search/internal/service"
+	"github.com/fouadkada/k8s-knowledge-sharing-advanced/search/internal/server/grpc"
+	"github.com/fouadkada/k8s-knowledge-sharing-advanced/search/internal/service"
 	"github.com/spf13/viper"
 	"log"
 )

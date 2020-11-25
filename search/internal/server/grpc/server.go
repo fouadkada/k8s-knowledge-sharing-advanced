@@ -1,9 +1,9 @@
 package grpc
 
 import (
-	"bitbucket.lab.dynatrace.org/users/fouad.alkada/repos/k8s-knowledge-sharing-advanced/search/internal/server"
-	"bitbucket.lab.dynatrace.org/users/fouad.alkada/repos/k8s-knowledge-sharing-advanced/search/pkg/proto"
 	"fmt"
+	"github.com/fouadkada/k8s-knowledge-sharing-advanced/search/internal/server"
+	"github.com/fouadkada/k8s-knowledge-sharing-advanced/search/pkg/proto"
 	"google.golang.org/grpc"
 	"net"
 )

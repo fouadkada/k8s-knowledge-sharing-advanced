@@ -1,4 +1,4 @@
-module bitbucket.lab.dynatrace.org/users/fouad.alkada/repos/k8s-knowledge-sharing-advanced/search
+module github.com/fouadkada/k8s-knowledge-sharing-advanced/search
 
 go 1.15
 

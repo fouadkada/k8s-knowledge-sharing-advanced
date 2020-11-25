@@ -1,11 +1,11 @@
 package service
 
 import (
-	"bitbucket.lab.dynatrace.org/users/fouad.alkada/repos/k8s-knowledge-sharing-advanced/search/pkg/proto"
 	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/fouadkada/k8s-knowledge-sharing-advanced/search/pkg/proto"
 	"github.com/golang/protobuf/jsonpb"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

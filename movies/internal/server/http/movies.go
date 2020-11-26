@@ -1,8 +1,8 @@
 package http
 
 import (
-	"bitbucket.lab.dynatrace.org/users/fouad.alkada/repos/k8s-knowledge-sharing-advanced/ratings/internal/server"
-	"bitbucket.lab.dynatrace.org/users/fouad.alkada/repos/k8s-knowledge-sharing-advanced/ratings/internal/service"
+	"github.com/fouadkada/k8s-knowledge-sharing-advanced/movies/internal/server"
+	"github.com/fouadkada/k8s-knowledge-sharing-advanced/movies/internal/service"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"net/http"
@@ -34,7 +34,8 @@ func (s *srv) StartServer() error {
 		moviesService: s.MoviesService,
 	}
 	r.Get("/", rest.heartbeat)
-	r.Get("/{title}", rest.search)
+	r.Get("/search", rest.search)
+	r.Get("/recommendation/{movie_id}", rest.recommendation)
 
 	return http.ListenAndServe(":"+s.Port, r)
 }

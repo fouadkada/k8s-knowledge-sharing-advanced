@@ -1,8 +1,10 @@
 package main
 
 import (
-	"bitbucket.lab.dynatrace.org/users/fouad.alkada/repos/k8s-knowledge-sharing-advanced/ratings/internal/server/http"
-	"bitbucket.lab.dynatrace.org/users/fouad.alkada/repos/k8s-knowledge-sharing-advanced/ratings/internal/service"
+	"context"
+	"github.com/fouadkada/k8s-knowledge-sharing-advanced/movies/internal/client/grpc"
+	"github.com/fouadkada/k8s-knowledge-sharing-advanced/movies/internal/server/http"
+	"github.com/fouadkada/k8s-knowledge-sharing-advanced/movies/internal/service"
 	"github.com/spf13/viper"
 	"log"
 )
@@ -22,7 +24,12 @@ func main() {
 		log.Fatal("The moviesHttpServer server port is missing, cannot start the application")
 	}
 
-	moviesService := service.NewMovieService()
+	client, err := grpc.NewClient(context.Background(), "localhost:3000", "localhost:4000")
+	if err != nil {
+		log.Fatal("Cannot connect to the searching service, cannot start the application")
+	}
+
+	moviesService := service.NewMovieService(client)
 	moviesHttpServer := http.NewMoviesServer(httpServerPort, moviesService)
 	log.Fatal(moviesHttpServer.StartServer())
 }

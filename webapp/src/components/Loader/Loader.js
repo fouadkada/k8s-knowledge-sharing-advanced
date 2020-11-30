@@ -1,6 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 
+import "./Loader.css";
+
 class Loader extends React.Component {
 
     render() {
@@ -10,7 +12,6 @@ class Loader extends React.Component {
                 <div className={`ui ${loading} dimmer`}>
                     <div className="ui text loader">Loading</div>
                 </div>
-                <p></p>
             </div>
         );
     }

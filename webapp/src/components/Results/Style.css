@@ -1,0 +1,16 @@
+.results {
+    margin-top: 2rem;
+}
+
+.single-result .card {
+    min-height: 38rem;
+    cursor: pointer;
+}
+
+.poster.image img {
+    height: 25rem !important;
+}
+
+.placeholder .image {
+    height: 25rem !important;
+}

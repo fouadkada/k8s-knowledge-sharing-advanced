@@ -10,21 +10,35 @@ import (
 )
 
 const (
-	HttpServerPort = "HTTP_PORT"
+	HttpServerPort           = "HTTP_PORT"
+	SearchServiceURI         = "SEARCH_SERVICE_URI"
+	RecommendationServiceURI = "RECOMMENDATION_SERVICE_URI"
 )
 
 func main() {
 	log.SetPrefix("MOVIES")
 
 	_ = viper.BindEnv(HttpServerPort)
+	_ = viper.BindEnv(SearchServiceURI)
+	_ = viper.BindEnv(RecommendationServiceURI)
 
 	httpServerPort := viper.GetString(HttpServerPort)
+	searchServiceURI := viper.GetString(SearchServiceURI)
+	recommendationServiceURI := viper.GetString(RecommendationServiceURI)
 
 	if httpServerPort == "" {
 		log.Fatal("The moviesHttpServer server port is missing, cannot start the application")
 	}
 
-	client, err := grpc.NewClient(context.Background(), "localhost:3000", "localhost:4000")
+	if searchServiceURI == "" {
+		log.Fatal("The search service URI is missing, cannot start the application")
+	}
+
+	if recommendationServiceURI == "" {
+		log.Fatal("The recommendation service URI is missing, cannot start the application")
+	}
+
+	client, err := grpc.NewClient(context.Background(), searchServiceURI, recommendationServiceURI)
 	if err != nil {
 		log.Fatal("Cannot connect to the searching service, cannot start the application")
 	}

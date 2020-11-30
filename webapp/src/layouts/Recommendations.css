@@ -1,0 +1,11 @@
+.recommendations {
+    margin-top: 7rem;
+}
+
+.recommendations .navigation {
+    font-size: 1.3rem;
+}
+
+.recommendations .single-result {
+    margin-bottom: 1rem;
+}

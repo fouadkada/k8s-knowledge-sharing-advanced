@@ -8,28 +8,18 @@ import (
 )
 
 const (
-	APIKey         = "TMDB_API_KEY"
-	GrpcServerPort = "GRPC_PORT"
+	APIKey = "TMDB_API_KEY"
 )
 
 func main() {
-	log.SetPrefix("RECOMMENDATION")
-
 	_ = viper.BindEnv(APIKey)
-	_ = viper.BindEnv(GrpcServerPort)
-
-	grpcServerPort := viper.GetString(GrpcServerPort)
 	apiKey := viper.GetString(APIKey)
 
 	if apiKey == "" {
 		log.Fatal("TMDB API Key is missing, cannot start the application")
 	}
 
-	if grpcServerPort == "" {
-		log.Fatal("The grpc server port is missing, cannot start the application")
-	}
-
 	tmdbService := service.NewTmdbService(apiKey)
-	server := grpc.NewServer(tmdbService, grpcServerPort)
+	server := grpc.NewServer(tmdbService, "3000")
 	log.Fatal(server.StartServer())
 }

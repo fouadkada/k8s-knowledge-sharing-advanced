@@ -10,28 +10,19 @@ import (
 )
 
 const (
-	HttpServerPort           = "HTTP_PORT"
 	SearchServiceURI         = "SEARCH_SERVICE_URI"
 	RecommendationServiceURI = "RECOMMENDATION_SERVICE_URI"
 	ServiceVersion           = "SERVICE_VERSION"
 )
 
 func main() {
-	log.SetPrefix("MOVIES")
-
-	_ = viper.BindEnv(HttpServerPort)
 	_ = viper.BindEnv(SearchServiceURI)
 	_ = viper.BindEnv(RecommendationServiceURI)
 	_ = viper.BindEnv(ServiceVersion)
 
-	httpServerPort := viper.GetString(HttpServerPort)
 	searchServiceURI := viper.GetString(SearchServiceURI)
 	recommendationServiceURI := viper.GetString(RecommendationServiceURI)
 	serviceVersion := viper.GetString(ServiceVersion)
-
-	if httpServerPort == "" {
-		log.Fatal("The moviesHttpServer server port is missing, cannot start the application")
-	}
 
 	if searchServiceURI == "" {
 		log.Fatal("The search service URI is missing, cannot start the application")
@@ -51,6 +42,6 @@ func main() {
 	}
 
 	moviesService := service.NewMovieService(client)
-	moviesHttpServer := http.NewMoviesServer(httpServerPort, moviesService)
+	moviesHttpServer := http.NewMoviesServer("3000", moviesService)
 	log.Fatal(moviesHttpServer.StartServer(serviceVersion))
 }

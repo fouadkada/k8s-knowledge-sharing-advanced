@@ -29,7 +29,7 @@ func (h *handler) search(w http.ResponseWriter, r *http.Request) {
 	result, err := h.moviesService.Search(r.Context(), title)
 	if err != nil {
 		respond(w, r, NewInternalServerError())
-		log.Printf("error fetching title: [%s] information with error: [%#v]", title, err)
+		log.Printf("error fetching title: [%s] information with error: [%v]", title, err)
 		return
 	}
 	respond(w, r, result)

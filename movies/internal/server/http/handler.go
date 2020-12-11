@@ -45,7 +45,7 @@ func (h *handler) recommendation(w http.ResponseWriter, r *http.Request) {
 	result, err := h.moviesService.Recommendations(r.Context(), mID)
 	if err != nil {
 		respond(w, r, NewInternalServerError())
-		log.Printf("error fetching recommendation for movie_id: [%s] with error: [%#v]", mID, err)
+		log.Printf("error fetching recommendation for movie_id: [%s] with error: [%v]", mID, err)
 		return
 	}
 	respond(w, r, result)

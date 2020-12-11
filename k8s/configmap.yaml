@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: movies-application-config-values
+data:
+  search-uri: "search-k8s-service:3000"
+  recommendations-uri: "recommendations-k8s-service:3000"

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: movies-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: movies-application
+  template:
+    metadata:
+      labels:
+        app: movies-application
+    spec:
+      containers:
+        - name: movies
+          image: fouadkada/movies
+          env:
+            - name: SEARCH_SERVICE_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: search-uri
+                  name: movies-application-config-values
+            - name: RECOMMENDATION_SERVICE_URI
+              valueFrom:
+                configMapKeyRef:
+                  key: recommendations-uri
+                  name: movies-application-config-values
+            - name: SERVICE_VERSION
+              value: "1"
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: movies-k8s-service
+spec:
+  type: ClusterIP
+  selector:
+    app: movies-application
+  ports:
+    - port: 3000
+
